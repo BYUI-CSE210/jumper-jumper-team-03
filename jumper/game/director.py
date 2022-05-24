@@ -1,4 +1,6 @@
 from game.terminal_service import TerminalService
+from game.parachute import Parachute
+from game.puzzle import Puzzle
 
 """
     Update the code and the comments as you change the code for your game.  You will be graded on following the
@@ -32,6 +34,12 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
+
+        # GET AN INSTANCE OF PUZZLE
+        # SET RANDOM WORD [PUZZLE]
+        # DISPLAY DEFAULT GUESS OUTPT [BLANKS]
+        # GET INSTANCE OF PARACHUTE
+        # DISPLAY DEFAULT PARACHUTE [4]
         while self._is_playing:
             self._get_inputs()
             self._do_updates()
@@ -43,7 +51,9 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        pass
+        
+        # GET PLAYERS GUESS AND STORE IT IN A VARIABLE
+
 
     def _do_updates(self):
         """Update this comment
@@ -51,7 +61,9 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        pass
+        # RUN GUESS IN PUZZLE
+        # GET CURRENT WORDS VALUE AND STORE IN VARIABLE
+        # VALIDATES WITH PARACHUTE THEN GETS CURRENT PARACHUTE
 
     def _do_outputs(self):
         """Update this comment
@@ -59,4 +71,8 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        pass
+        # DISPLAY CURRENT WORDS VALUE 
+        # DISPLAY PARCHUTE
+
+# THINK OF HOW TO IMPLEMENT STRETCH
+# CELEBRATE
