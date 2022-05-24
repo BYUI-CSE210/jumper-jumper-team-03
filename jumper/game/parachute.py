@@ -13,8 +13,9 @@ class Parachute:
         Args: 
             self(Parachute): An instance of a Parachute.
             """
+        self._parachute_level = 4
         self._parachute = {
-            0:
+            4:
             """
              ___ 
             /___\\
@@ -26,7 +27,7 @@ class Parachute:
             
             ^^^^^^^
             """,
-            1:
+            3:
             """
             /___\\
             \   / 
@@ -47,7 +48,7 @@ class Parachute:
             
             ^^^^^^^
             """,
-            3:
+            1:
             """
              \ / 
               0  
@@ -56,7 +57,7 @@ class Parachute:
             
             ^^^^^^^
             """,
-            4:
+            0:
             """
               X  
              /|\ 
@@ -71,7 +72,7 @@ class Parachute:
         
         Returns: 
             index_number: The current index of the parachute."""
-        return self._parachute
+        return self._parachute[self._parachute_level]
 
     def parachute_remaining(self, parachute):
         """Retrieves how much of the parachute is left.
@@ -79,4 +80,4 @@ class Parachute:
         Args: 
             self: an instance of a parachute
             parachute: the current amount of parachute left."""
-        self._parachute = parachute
+        self._parachute_level = parachute
