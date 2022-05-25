@@ -33,6 +33,7 @@ class Director:
         self._player_guess = ""
         self._puzzle_results = True
         self._level = 4
+        self._guessed_before = False
 
     def start_game(self):
         """Starts the game by running the main game loop.
@@ -65,6 +66,8 @@ class Director:
         
         # GET PLAYERS GUESS AND STORE IT IN A VARIABLE
         self._player_guess = self._terminal_service.read_text("guess a letter [a -z]: ")
+        if self._puzzle.already_guessed(self._player_guess):
+            self._terminal_service.write_text("you already guessed that")
 
     def _do_updates(self):
         """Update this comment
@@ -74,7 +77,7 @@ class Director:
         """
         # RUN GUESS IN PUZZLE
         self._puzzle_results = self._puzzle.check_guess(self._player_guess)
-
+        
         self._puzzle.set_current_word()
 
         # GET CURRENT WORDS VALUE AND STORE IN VARIABLE
@@ -94,8 +97,6 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        if self._puzzle.already_guessed(self._player_guess):
-            self._terminal_service.write_text("you already guessed that")
         # DISPLAY CURRENT WORDS VALUE
         self._terminal_service.write_text(self._current_guess)
 
@@ -106,5 +107,4 @@ class Director:
         if (self._level == 0) or (self._puzzle.word_is_guessed()):
             self._is_playing = False
 
-# THINK OF HOW TO IMPLEMENT STRETCH
 # CELEBRATE

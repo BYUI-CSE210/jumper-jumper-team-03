@@ -1,4 +1,4 @@
-from operator import truediv
+from operator import concat, truediv
 import random
 from tabnanny import check
 
@@ -61,6 +61,5 @@ class Puzzle:
         return self._output_list == self._current_word
             
     def already_guessed(self, guess):   
-        if (guess in self._correct_guesses)  or (guess in self._wrong_guesses):  
-            return True
-        else: return False   
+        guess_list = concat(self._correct_guesses, self._wrong_guesses)
+        return guess in guess_list
