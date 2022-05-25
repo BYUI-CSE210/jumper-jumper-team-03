@@ -94,6 +94,8 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+        if self._puzzle.already_guessed(self._player_guess):
+            self._terminal_service.write_text("you already guessed that")
         # DISPLAY CURRENT WORDS VALUE
         self._terminal_service.write_text(self._current_guess)
 

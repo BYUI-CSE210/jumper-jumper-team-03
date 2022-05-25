@@ -1,3 +1,4 @@
+from operator import truediv
 import random
 from tabnanny import check
 
@@ -59,3 +60,7 @@ class Puzzle:
     def word_is_guessed(self):
         return self._output_list == self._current_word
             
+    def already_guessed(self, guess):   
+        if (guess in self._correct_guesses)  or (guess in self._wrong_guesses):  
+            return True
+        else: return False   
