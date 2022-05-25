@@ -30,6 +30,7 @@ class Director:
         self._parachute = Parachute()
         self._puzzle = Puzzle()
         self._current_guess = ""
+        self._player_guess = ""
         self._puzzle_results = True
         self._level = 4
 
@@ -63,7 +64,7 @@ class Director:
         """
         
         # GET PLAYERS GUESS AND STORE IT IN A VARIABLE
-        self._current_guess = self._terminal_service.read_text("guess a letter [a -z]: ")
+        self._player_guess = self._terminal_service.read_text("guess a letter [a -z]: ")
 
     def _do_updates(self):
         """Update this comment
@@ -72,14 +73,15 @@ class Director:
             self (Director): An instance of Director.
         """
         # RUN GUESS IN PUZZLE
-        self._puzzle_results = self._puzzle.check_guess(self._current_guess)
+        self._puzzle_results = self._puzzle.check_guess(self._player_guess)
+
         self._puzzle.set_current_word()
 
         # GET CURRENT WORDS VALUE AND STORE IN VARIABLE
         self._current_guess = self._puzzle.get_current_output()
         
         # VALIDATES WITH PARACHUTE THEN GETS CURRENT PARACHUTE
-        if self._current_guess:
+        if self._puzzle_results:
             self._parachute.get_parachute()
         else:
             self._level -= 1
@@ -97,6 +99,10 @@ class Director:
 
         # DISPLAY PARCHUTE
         self._terminal_service.write_text(self._parachute.get_parachute())
+
+        # GAME OVER CHECK
+        if (self._level == 0) or (self._puzzle.word_is_guessed()):
+            self._is_playing = False
 
 # THINK OF HOW TO IMPLEMENT STRETCH
 # CELEBRATE
