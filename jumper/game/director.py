@@ -27,6 +27,11 @@ class Director:
         """
         self._is_playing = True
         self._terminal_service = TerminalService()
+        self._parachute = Parachute()
+        self._puzzle = Puzzle()
+        self._current_guess = ""
+        self._puzzle_results = True
+        self._level = 4
 
     def start_game(self):
         """Starts the game by running the main game loop.
@@ -35,11 +40,16 @@ class Director:
             self (Director): an instance of Director.
         """
 
-        # GET AN INSTANCE OF PUZZLE
         # SET RANDOM WORD [PUZZLE]
+        self._puzzle.set_random_word()
+        self._current_guess = self._puzzle.get_current_output()
+        
         # DISPLAY DEFAULT GUESS OUTPT [BLANKS]
-        # GET INSTANCE OF PARACHUTE
+        self._terminal_service.write_text(self._puzzle.get_current_output())
+
         # DISPLAY DEFAULT PARACHUTE [4]
+        self._terminal_service.write_text(self._parachute.get_parachute())
+
         while self._is_playing:
             self._get_inputs()
             self._do_updates()
@@ -53,7 +63,7 @@ class Director:
         """
         
         # GET PLAYERS GUESS AND STORE IT IN A VARIABLE
-
+        self._current_guess = self._terminal_service.read_text("guess a letter [a -z]: ")
 
     def _do_updates(self):
         """Update this comment
@@ -62,8 +72,19 @@ class Director:
             self (Director): An instance of Director.
         """
         # RUN GUESS IN PUZZLE
+        self._puzzle_results = self._puzzle.check_guess(self._current_guess)
+        self._puzzle.set_current_word()
+
         # GET CURRENT WORDS VALUE AND STORE IN VARIABLE
+        self._current_guess = self._puzzle.get_current_output()
+        
         # VALIDATES WITH PARACHUTE THEN GETS CURRENT PARACHUTE
+        if self._current_guess:
+            self._parachute.get_parachute()
+        else:
+            self._level -= 1
+            self._parachute.parachute_remaining(self._level)
+        
 
     def _do_outputs(self):
         """Update this comment
@@ -71,8 +92,11 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        # DISPLAY CURRENT WORDS VALUE 
+        # DISPLAY CURRENT WORDS VALUE
+        self._terminal_service.write_text(self._current_guess)
+
         # DISPLAY PARCHUTE
+        self._terminal_service.write_text(self._parachute.get_parachute())
 
 # THINK OF HOW TO IMPLEMENT STRETCH
 # CELEBRATE
