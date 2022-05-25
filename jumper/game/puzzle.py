@@ -16,7 +16,7 @@ class Puzzle:
         Args:
             ...
         """
-        self._wordsList = ["water", "invert", "python", "pizza", "jumper"]
+        self._wordsList = ["water", "invert", "python", "pizza", "jumper", "fighter", "painter","kicker","panda","stranger","creator","finisher"]
         self._current_word = []
         self._correct_guesses = []
         self._wrong_guesses = []
