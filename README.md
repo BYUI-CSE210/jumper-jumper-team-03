@@ -10,6 +10,8 @@ Jumper is played according to the following rules.
     -If the puzzle is solved the game is over.
     -If the player has no more parachute the game is over.
 
+As part of additional work our team did on this assignment, the terminal will display if you already guessed a letter. If it is a letter that is correct that is already guessed, the player will not lose a parachute line, however, if it is an additional incorrect guess, the player will lose an additional parachute line.
+
 ## Getting Started
 Make sure you have Python 3.8.0 or newer installed and running on your machine.
 
