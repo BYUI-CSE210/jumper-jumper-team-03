@@ -17,6 +17,13 @@ class Director:
     Attributes:
         is_playing (boolean): Whether or not to keep playing.
         terminal_service: For getting and displaying information on the terminal.
+        parachute: For updating the parachute based on the player's guess.
+        puzzle: For getting random word from list and updating output based on player's guess.
+        current_guess:  Holds the current output from the puzzle class.
+        player_guess:  Holds the letter currently guessed by the player.
+        puzzle_results(boolean): Whether or not the player_guess exists in the current word. 
+        level(int): The parachute level [4-0]
+        guessed_before(boolean): Whether or not the player_guess has been guessed before.
     """
 
     def __init__(self):
@@ -58,7 +65,8 @@ class Director:
             self._do_outputs()
 
     def _get_inputs(self):
-        """Update this comment
+        """
+        Gets player guess from the terminal and stores in a variable
 
         Args:
             self (Director): An instance of Director.
@@ -70,7 +78,10 @@ class Director:
             self._terminal_service.write_text("you already guessed that")
 
     def _do_updates(self):
-        """Update this comment
+        """
+        Checks if player's guess is correct using the Puzzle class,
+        reduces parachute by a step if guess is wrong,
+        and updates visual parachute.
 
         Args:
             self (Director): An instance of Director.
@@ -92,8 +103,10 @@ class Director:
         
 
     def _do_outputs(self):
-        """Update this comment
-
+        """
+        Displays value of current word,
+        displays current parachute lavel,
+        and ends loop if the game is over.
         Args:
             self (Director): An instance of Director.
         """
@@ -106,5 +119,3 @@ class Director:
         # GAME OVER CHECK
         if (self._level == 0) or (self._puzzle.word_is_guessed()):
             self._is_playing = False
-
-# CELEBRATE

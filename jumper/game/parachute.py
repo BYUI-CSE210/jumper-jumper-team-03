@@ -5,6 +5,7 @@ class Parachute:
     
     Attributes:
         parachute(dict[str]): a dictonary of strings.
+        parachute_level: current level of parachute [4-0]
         """
 
     def __init__(self):
